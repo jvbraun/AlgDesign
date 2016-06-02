@@ -37,7 +37,7 @@ function (frml,data=sys.frame(sys.parent()),nTrials,center=FALSE,approximate=FAL
 	numericColumn<-sapply(data,is.numeric)
 
 	if (center) {
-		means<-apply(data[,numericColumn],2,mean)
+		means<-apply(data[,numericColumn,drop=FALSE],2,mean)
 		data[,numericColumn]<-sweep(data[,numericColumn,drop=FALSE],2,means)
 	}
 
