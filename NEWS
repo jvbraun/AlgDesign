@@ -1,10 +1,18 @@
-AlgDesign 1.1-7.3
-====================
+# AlgDesign 1.2.0
 
-* Jerome V. Braun volunteered to maintain the AlgDesign package.
+Many thanks to Kurt Hornik for fixing the C code to meet current standards
+so that AlgDesign would not be dropped from CRAN!  Kurt also fixed up a
+variety of other minor issues.
 
-Robert Eugene Wheeler Obituary
-==============================
+Thank to Tyler Morgan-Wall for fixing a bug in FederovOpt.R.
+
+# AlgDesign 1.1-7.3
+
+Jerome V. Braun volunteered to maintain the AlgDesign package.
+
+# AlgDesign 1.1-7.2
+
+## Robert Eugene Wheeler Obituary
 
 November 28, 1931 - June 28, 2012
 
@@ -21,8 +29,7 @@ and three grandchildren.
 Retrieved September 29th, 2014]
 
 
-Wheeler, Robert Eugene
-==============================
+## Wheeler, Robert Eugene
 
 Bob Wheeler
 
