@@ -1,6 +1,5 @@
 Package: AlgDesign
-Version: 1.1-7.3
-Date: 2011/10/14
+Version: 1.2.0
 Title: Algorithmic Experimental Design
 Author: Bob Wheeler <bwheelerg@gmail.com>
 Maintainer: Jerome Braun <jvbraun.statistics@gmail.com>
@@ -16,6 +15,3 @@ Packaged: 2014-02-12 09:07:20 UTC; ripley
 Repository: CRAN
 Date/Publication: 2014-02-12 10:10:49
 NeedsCompilation: yes
-X-CRAN-Original-Maintainer: Bob Wheeler <bwheelerg@gmail.com>
-X-CRAN-Original-URL: http://www.bobwheeler.com/statistics
-X-CRAN-Comment: Orphaned on 2014-02-11: the maintainer is unresponsive.
