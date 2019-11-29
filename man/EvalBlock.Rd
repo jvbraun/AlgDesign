@@ -45,7 +45,7 @@ eval.blockdesign(frml,design,blocksizes,rho=1,confounding=FALSE,center=FALSE)
 	
 	Please cite this program as follows:
 
-Wheeler, R.E. (2004). eval.blockdesign. \emph{AlgDesign}. The R project for statistical computing \url{http://www.r-project.org/}
+Wheeler, R.E. (2004). eval.blockdesign. \emph{AlgDesign}. The R project for statistical computing \url{https://www.r-project.org/}
 }
 
 \keyword{design}

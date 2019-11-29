@@ -234,7 +234,7 @@ desDAN<-optFederov(~quad(A,B,C),dat,eval=TRUE,approx=TRUE,nTrials=15)
 	
 	Please cite this program as follows:
 
-Wheeler, R.E. (2004). optFederov. \emph{AlgDesign}. The R project for statistical computing \url{http://www.r-project.org/}
+Wheeler, R.E. (2004). optFederov. \emph{AlgDesign}. The R project for statistical computing \url{https://www.r-project.org/}
 }
 
 

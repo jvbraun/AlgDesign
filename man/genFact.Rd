@@ -33,7 +33,7 @@ dat<-gen.factorial(3,3,varNames=c("A","B","C"))
 	
 	Please cite this program as follows:
 
-Wheeler, R.E. (2004). gen.factorial. \emph{AlgDesign}. The R project for statistical computing \url{http://www.r-project.org/}
+Wheeler, R.E. (2004). gen.factorial. \emph{AlgDesign}. The R project for statistical computing \url{https://www.r-project.org/}
 }
 
 

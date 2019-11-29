@@ -48,7 +48,7 @@ eval.design(frml,design,confounding=FALSE,variances=TRUE,center=FALSE,X=NULL)
 	
 	Please cite this program as follows:
 
-Wheeler, R.E. (2004). eval.design. \emph{AlgDesign}. The R project for statistical computing \url{http://www.r-project.org/}
+Wheeler, R.E. (2004). eval.design. \emph{AlgDesign}. The R project for statistical computing \url{https://www.r-project.org/}
 }
 
 \keyword{design}

@@ -158,7 +158,7 @@ od<-optBlock(~D+E*(quad(A,B,C)),withinData=within$design,blocksizes=rep(6,9),who
 
 	Please cite this program as follows:
 
-Wheeler, R.E. (2004). optBlock. \emph{AlgDesign}. The R project for statistical computing \url{http://www.r-project.org/}
+Wheeler, R.E. (2004). optBlock. \emph{AlgDesign}. The R project for statistical computing \url{https://www.r-project.org/}
 }
 \keyword{design}
 
