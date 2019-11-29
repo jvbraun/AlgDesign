@@ -1976,7 +1976,7 @@ SEXP FederovOpt(
 
 
 
-	Xi=AS_NUMERIC(Xi); /* The only argument modified by the C program */
+	PROTECT(Xi=AS_NUMERIC(Xi)); /* The only argument modified by the C program */
 	X=NUMERIC_POINTER(Xi);
 
 	rows=INTEGER_POINTER(rowsi);
@@ -1987,8 +1987,8 @@ SEXP FederovOpt(
 
 	doSpace=INTEGER_POINTER(doSpacei)[0];
 	if (doSpace) {
-		Bi=AS_NUMERIC(Bi);
-		B=NUMERIC_POINTER(Bi);
+	    PROTECT(Bi=AS_NUMERIC(Bi));
+	    B=NUMERIC_POINTER(Bi);
 	}
 
 	N=INTEGER_POINTER(GET_DIM(Xi))[0];
@@ -2085,17 +2085,25 @@ SEXP FederovOpt(
 		UNPROTECT(1);
 
 		UNPROTECT(1);
+
+		if (doSpace)
+		    UNPROTECT(1); /* Bi */
+
+		UNPROTECT(1);	/* Xi */
+
 		return alist;
 	}
-	else 
-		return NULL;
+	else {
+		if (doSpace)
+		    UNPROTECT(1); /* Bi */
+
+		UNPROTECT(1);	/* Xi */
+
+		return R_NilValue;
+	}
+
 	/* In case Calloc() is used */
 /*	ProgDealloc(U,V,B,BU,T,Ti,Tip,W,maxmin,d,vec,designFlag,ttrows,trows); */
 
 
 }
-
-
-
-
-				

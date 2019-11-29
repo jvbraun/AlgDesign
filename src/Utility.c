@@ -14,7 +14,7 @@
 
 
 
-void	GetFactorial(SEXP Xi,SEXP levelsi,SEXP centri,SEXP factorVeci);
+SEXP	GetFactorial(SEXP Xi,SEXP levelsi,SEXP centri,SEXP factorVeci);
 
 #define Idx(A,B) ((B)+(A)*N)
 
@@ -25,7 +25,7 @@ void	GetFactorial(SEXP Xi,SEXP levelsi,SEXP centri,SEXP factorVeci);
 */
 
 
-void GetFactorial(
+SEXP GetFactorial(
 	SEXP Xi,
 	SEXP levelsi,
 	SEXP centeri,
@@ -87,7 +87,8 @@ void GetFactorial(
 			
 		}
 	}
-	
+
+	return R_NilValue;
 }
 
 /* NextCombination *****************************************************************
@@ -128,7 +129,7 @@ void NextCombination(
 | Generates a mixture candidate set. Keeps matrix in R's row major form
 */
 
-void GetMixture(
+SEXP GetMixture(
 	SEXP Xi,
 	SEXP degreei
 )
@@ -159,6 +160,8 @@ void GetMixture(
 		}
 		ind++;
 	}until(!more);
+
+	return R_NilValue;
 
 }
 

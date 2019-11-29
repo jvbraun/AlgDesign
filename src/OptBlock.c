@@ -3486,14 +3486,18 @@ SEXP BlockOpt(
 	SEXP    errVector;
 	SEXP    BAVector;
 
+	int nprotect = 0;
 
-	Xi=AS_NUMERIC(Xi); /* The only argument modified by the C program */
+	PROTECT(Xi=AS_NUMERIC(Xi)); /* The only argument modified by the
+				     * C program */
+	nprotect++;
 	X=NUMERIC_POINTER(Xi);
 
 	doWholeBlock=INTEGER_POINTER(doWholeBlocki)[0]; /* Global value */
 	if (doWholeBlock) {
-		blockFactorsi=AS_NUMERIC(blockFactorsi);
-		blockFactors=NUMERIC_POINTER(blockFactorsi);
+	    PROTECT(blockFactorsi=AS_NUMERIC(blockFactorsi));
+	    nprotect++;
+	    blockFactors=NUMERIC_POINTER(blockFactorsi);
 	}
 
 	initRows=INTEGER_POINTER(initRowsi)[0]; /* Global value */
@@ -3599,14 +3603,19 @@ SEXP BlockOpt(
 		SET_NAMES(alist,anames);
 		UNPROTECT(1);
 
-		UNPROTECT(1);
+		UNPROTECT(1);	/* alist */
+
+		UNPROTECT(nprotect);
 
 		return alist;
 
 	}
-	else 
-		return NULL;
-	
+	else {
+		UNPROTECT(nprotect);
+
+		return R_NilValue;
+	}
+
 	/* the following is needed if Calloc() is used */
 /*	ProgDeallocate(B,blockMeans,tBlockMeans,tX,T,Tip,W,vec,Sc,rows); */
 	
