@@ -6,3 +6,5 @@ export(actuals, efficient.rounding, eval.blockdesign, eval.design,
 S3method(model.matrix, formula)
 S3method(model.matrix, terms)
 
+importFrom("stats", "C", "as.formula", "formula", "model.matrix",
+           "model.matrix.default", "rexp", "runif")
