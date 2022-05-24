@@ -405,7 +405,7 @@ double reduceDesign(
 		Rotate(pX,tVec,T,k,k,1.0,norm);  /* the n normalizes the design */
 	}
 
-	norm=2*scale?sqrt((double)n):1.0;
+	norm=2*(scale?sqrt((double)n):1.0);
 	for (i=0;i<k;i++) {
 		r=(pMx[i]+pMn[i])/norm;
 		t=T[Imat(i,i)];
