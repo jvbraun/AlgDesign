@@ -1,3 +1,8 @@
+# AlgDesign 1.2.1
+
+Minor fix in FederovOpt.c to avoid CRAN warning.
+Minor corrections in AlgDesign.Rnw.
+
 # AlgDesign 1.2.0
 
 Many thanks to Kurt Hornik for fixing the C code to meet current standards
