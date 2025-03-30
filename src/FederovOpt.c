@@ -1358,33 +1358,33 @@ void ProgDealloc(
 )	
 {
 	if (U)
-		Free(U);
+		R_Free(U);
 	if (V)
-		Free(V);
+		R_Free(V);
 	if (B)
-		Free(B);
+		R_Free(B);
 	if (BU)
-		Free(BU);
+		R_Free(BU);
 	if (T)
-		Free(T);
+		R_Free(T);
 	if (Ti)
-		Free(Ti);
+		R_Free(Ti);
 	if (Tip)
-		Free(Tip);
+		R_Free(Tip);
 	if (W)
-		Free(W);
+		R_Free(W);
 	if (maxmin)
-		Free(maxmin);
+		R_Free(maxmin);
 	if (d)
-		Free(d);
+		R_Free(d);
 	if (vec)
-		Free(vec);
+		R_Free(vec);
 	if (designFlag)
-		Free(designFlag);
+		R_Free(designFlag);
 	if (ttrows)
-		Free(ttrows);
+		R_Free(ttrows);
 	if (trows)
-		Free(trows);
+		R_Free(trows);
 
 }
 

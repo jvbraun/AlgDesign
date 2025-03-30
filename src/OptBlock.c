@@ -2497,25 +2497,25 @@ void ProgDeallocate(
 )
 {
 	if (B)
-		Free(B);
+		R_Free(B);
 	if (blockMeans)
-		Free(blockMeans);
+		R_Free(blockMeans);
 	if (tBlockMeans)
-		Free(tBlockMeans);
+		R_Free(tBlockMeans);
 	if (tX)
-		Free(tX);
+		R_Free(tX);
 	if (T)
-		Free(T);
+		R_Free(T);
 	if (Tip)
-		Free(Tip);
+		R_Free(Tip);
 	if (W)
-		Free(W);
+		R_Free(W);
 	if (vec)
-		Free(vec);
+		R_Free(vec);
 	if (Sc)
-		Free(Sc);
+		R_Free(Sc);
 	if (rows)
-		Free(rows);
+		R_Free(rows);
 
 }
 
