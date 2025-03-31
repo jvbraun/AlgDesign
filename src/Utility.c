@@ -36,7 +36,7 @@ SEXP GetFactorial(
 	int *levels;
 	int N;
 	int nVars;
-	bool center;
+	int center;
 	int *factorVec;
 	int i;
 	int j;
@@ -101,7 +101,7 @@ void NextCombination(
 	int *R,
 	int n,
 	int k,
-	bool *more
+	int *more
 )
 {
 	static int t;
@@ -139,7 +139,7 @@ SEXP GetMixture(
 	int k;
 	int	degree;
 	int *R;
-	bool more=false;
+	int more=false;
 	int ind;
 	int i;
 

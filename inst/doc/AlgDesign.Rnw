@@ -517,7 +517,7 @@ desD$design[c(1:5,23:27),]
 
 \begin{verbatim}
 desI<-optFederov(~quad(.),dat,approximate=TRUE,criterion="I")
-desD$design[c(1:5,27:31),]
+desI$design[c(1:5,27:31),]
     Proportion  A  B  C
 1        0.042 -3 -3 -3
 4        0.030  0 -3 -3
@@ -608,7 +608,7 @@ The unrounded design had 30 support points, but the rounding has discarded ten o
 
 \begin{verbatim}
 desDR2<-optFederov(~quad(.),dat,approximate=TRUE,nTrials=40)
-desDR$design[c(1:5,26:30),]
+desDR2$design[c(1:5,23:27),]
     Rep..  A  B  C
 1       2 -3 -3 -3
 4       1  0 -3 -3

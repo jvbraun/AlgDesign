@@ -15,7 +15,7 @@
 #include <R_ext/Utils.h>
 
 
-bool DllMain(void)					 
+int DllMain(void)					 
 {
 
     return true;
@@ -27,7 +27,7 @@ bool DllMain(void)
 
 int		Klimit=0;
 int		Llimit=0;
-bool    doRcrit=FALSE;
+int    doRcrit=FALSE;
 
 typedef struct tagdStruct{
 	double	d;
@@ -35,13 +35,13 @@ typedef struct tagdStruct{
 	int		o;	/* d sorted index -- smallest d has index 0 */
 } dType, *pdType;
 
-bool doApprox=false; /* global switch */
+int doApprox=false; /* global switch */
 
-int FederovOptimize(double *X,double *B,double *BU,double *proportions,bool RandomStart,int Nullify,
-	int	criterion,bool evaluateI,bool doSpace,
+int FederovOptimize(double *X,double *B,double *BU,double *proportions,int RandomStart,int Nullify,
+	int	criterion,int evaluateI,int doSpace,
 	int augment,double *D,double *A,double *I,double *G,double *U,double *V,double *T,double *Ti,double *Tip,
 	double *W,double *maxmin,dType *d,double *vec,int *designFlag,int *ttrows,int *rows,
-		    int	*trows,int N,int n,int k,int maxIteration,int nRepeats,double DFrac,double  CFrac,bool *error);
+		    int	*trows,int N,int n,int k,int maxIteration,int nRepeats,double DFrac,double  CFrac,int *error);
 
 
 SEXP FederovOpt(SEXP Xi,SEXP RandomStarti,SEXP rowsi,SEXP Nullifyi,SEXP criterioni,SEXP evaluateIi,
@@ -53,22 +53,22 @@ double GetLinearCriterionA(double *pBU,int criterion,double *pU,int k);
 
 int  ProgAlloc(double **U,double **V,double **B,
 	double **BU,double **T,double **Ti,double	**Tip,double  **W,double **maxmin,dType **d,
-	double  **vec,int **designFlag,int **ttrows,int **trows,int Nin,int	n,int k,bool criterion,
-	bool evaluateI,bool doSpace);
+	double  **vec,int **designFlag,int **ttrows,int **trows,int Nin,int	n,int k,int criterion,
+	int evaluateI,int doSpace);
 void ProgDealloc(double *U,double *V,double *B,double *BU,double	*T,double *Ti,
-	double	*Tip,double  *W,double *maxmin,dType *d,double  *vec,bool *designFlag,bool *ttrows,int *trows);
+	double	*Tip,double  *W,double *maxmin,dType *d,double  *vec,int *designFlag,int *ttrows,int *trows);
 void FillInB(double *X,double *B,int k,int N);
 
-void BacksolveT(double *matrixXY,int nColumns,bool scaled);
+void BacksolveT(double *matrixXY,int nColumns,int scaled);
 double findDelta(double *B,int criterion,int *xold,int *xnew,dType *d,double *U,double *V,double N,int n,int k,
-	bool *designFlag,int *rows,bool *failure);
+	int *designFlag,int *rows,int *failure);
 double findDeltaAlpha(double *delta,double *BU,int criterion,int *xnew,double maxd,int maxdi,
 	double Acrit,double Icrit,dType *d,
-	double *U,double N,int k,bool *failure);
+	double *U,double N,int k,int *failure);
 void getEfficiencies(double	*determinant,double	*Gefficiency,double	*DRefficiency,
-	bool *designFlag,double	*X,double *T,double	*vec,dType	*d,int m,int N,int k);
-double  makeTiAndTipFromT(double *Tip,double *T,double *Ti,double *maxmin,double norm,bool *singular,int k);
-double evaluateCriteria(double *Tip,double *Ti,double *W,double *B,int criterion,bool evaluateI,
+	int *designFlag,double	*X,double *T,double	*vec,dType	*d,int m,int N,int k);
+double  makeTiAndTipFromT(double *Tip,double *T,double *Ti,double *maxmin,double norm,int *singular,int k);
+double evaluateCriteria(double *Tip,double *Ti,double *W,double *B,int criterion,int evaluateI,
 	double  *Acrit,double  *Icrit,double logdet,int k,int N);
 void makeBXd(double *X,double *U,double *V,double *Ti,double *Tip,double *B, double *BU, int criterion,
 			 int *designFlag,dType *d,double *maxd,int *maxdi,int k,int N);
@@ -76,21 +76,21 @@ void MatMult(double *A,double *B,double *C,int a,int b);
 void Permute(int *a,int	n);
 void getRange(double *pMx,double *pMn,double *pX,int k);
 double reduceDesign(int	*rows,double *X,double *T,double *maxmin,double *tVec,int k,
-		int n,bool scale,bool *singular);
+		int n,int scale,int *singular);
 void Rotate(double	*vec,double	*tVec,double *matrixXY,int nTerms,int nColumns,double weight,double n);
 void SwapRows(pdType a,pdType b);
-int  dCompare(pdType a,pdType b,bool compType);
-void dShellSort(pdType pd,int n,bool compType);
+int  dCompare(pdType a,pdType b,int compType);
+void dShellSort(pdType pd,int n,int compType);
 void update(int	xold,int xnew,int *rows,int *designFlag,double *T,double *X,double *tVec,
 	int k,int n);
 void updateA(int xnew,double *proportions,double alpha,double *T,double	*X,double *tVec,int	k,int N);
 double getNextRow(double *V,int N,int k,int *designFlag,int	*newRow);
 void orthog(double *V,double *vec,int *designFlag,double scale,int N,int k);
 void orthogAug(double *V,int *rows,int augment,int *designFlag,int N,int k);
-int nullify(double *X,double *V,int augment,int *rows,bool *designFlag, int N,int k);
+int nullify(double *X,double *V,int augment,int *rows,int *designFlag, int N,int k);
 void filloutDesign(double	*T,double *Ti,double *Tip,int	*rows,
 	int *ttrows, double	*X,double *maxmin,double *vec,
-	int k,int ka,int	n,int N,bool *singular);
+	int k,int ka,int	n,int N,int *singular);
 void transposeMatrix(double *X,int N,int k);
 
 
@@ -114,7 +114,7 @@ void SwapRows(
 int dCompare(	
 	pdType	a,
 	pdType	b,
-	bool		compType /* true for d, false for i */
+	int		compType /* true for d, false for i */
 )
 {
 	double	d;
@@ -144,7 +144,7 @@ int dCompare(
 void dShellSort(
 	pdType	pd,		/* the array of dType */
 	int		n,       /* size of the array     */
-	bool	compType /* true if d's compared, false if i's   */
+	int	compType /* true if d's compared, false if i's   */
 )
 {
    int		gap,
@@ -233,7 +233,7 @@ void Rotate(
 	int		i,
 			j,
 			kIndex;
-	bool	skip;
+	int	skip;
 
 
 	for (i=0;i<nColumns;i++) {
@@ -370,8 +370,8 @@ double reduceDesign(
 	double	*tVec,
 	int		k,
 	int		n,
-	bool    scale, /* if true, scale T by n */
-	bool    *singular
+	int    scale, /* if true, scale T by n */
+	int    *singular
 )
 {
 	double	*pX;
@@ -553,7 +553,7 @@ int nullify(
 	double	*V,
 	int		augment,
 	int		*rows,
-	bool    *designFlag,
+	int    *designFlag,
 	int		N,
 	int		k
 	)
@@ -602,7 +602,7 @@ double  makeTiAndTipFromT(
 	double *Ti,
 	double *maxmin,
 	double norm,
-	bool   *singular,
+	int   *singular,
 	int		k
 	)
 {
@@ -665,7 +665,7 @@ double evaluateCriteria(
 	double	*W,	/* k*(k+1)/2 elements of working strorage */
 	double  *B, /* Upper trianglular part of symmetric matrix G */
 	int		criterion,
-	bool	evaluateI,
+	int	evaluateI,
 	double  *Acrit,
 	double  *Icrit,
 	double  logdet,
@@ -911,7 +911,7 @@ double findDeltaAlpha(
 	double	*U, /* U=XM^-1 */
 	double	N,
 	int		k,
-	bool    *failure
+	int    *failure
 )
 {
 	int		i;
@@ -981,9 +981,9 @@ double findDelta(
 	double	N,
 	int		n,
 	int		k,
-	bool	*designFlag,
+	int	*designFlag,
 	int		*rows,
-	bool    *failure
+	int    *failure
 )
 {
 	double	di;	/* dx for row in design */
@@ -1291,9 +1291,9 @@ int ProgAlloc(
 	int		N,  
 	int		n, 
 	int		k, 
-	bool    criterion,
-	bool	evaluateI,
-	bool    doSpace
+	int    criterion,
+	int	evaluateI,
+	int    doSpace
 )
 {
 	int K=k*(k+1)/2;
@@ -1404,7 +1404,7 @@ void filloutDesign(
 	int		ka,
 	int		n,
 	int     N,
-	bool	*singular
+	int	*singular
   )
 {
 	int i;
@@ -1498,11 +1498,11 @@ int FederovOptimize(
 	double  *B, /* Upper triangle of Space matrix, G=X'X/N, for I or NULL if criterion!=2 */
 	double  *BU, /* Product of G and U or NULL if criterion !=2 */
 	double  *proportions, /* Proportions for approximate theory or NULL if not done */
-	bool	RandomStart, /* if TRUE rows will be filled at random to start */
+	int	RandomStart, /* if TRUE rows will be filled at random to start */
 	int 	Nullify,   /* if non-zwro nullify() will be used to fill in rows: if 2, some pts will be random */
 	int		criterion,  /* 0 for D, 1 for A, 2 for I */
-	bool	evaluateI, /* Return I as well as D and A */
-	bool    doSpace,
+	int	evaluateI, /* Return I as well as D and A */
+	int    doSpace,
 	int		augment,   /* number of rows for aumentee design*/
 	double  *D, /* D determinant always returned*/
 	double	*A, /* A  always returned */
@@ -1545,7 +1545,7 @@ int FederovOptimize(
 	double  Acrit;
 	double  Icrit=0;
 	double  logdet;
-	bool	singular;
+	int	singular;
 	int		countSingular=0;
 	int		nRepeatCounts=nRepeats;
 	double  bestCrit=criterion?1e8:-1e8;
@@ -1555,10 +1555,10 @@ int FederovOptimize(
 	int     pp;
 	int		ka;
 	double  norm=(doApprox)?1:(double)n;
-	bool	failure;
+	int	failure;
 	double  alpha;
 	double  pf;
-	bool	firstPass=true;
+	int	firstPass=true;
 	int		nd;
 	int		np;
 
@@ -1927,11 +1927,11 @@ SEXP FederovOpt(
 	int		N;
 	int		k;
 	int		n;
-	bool	RandomStart;
+	int	RandomStart;
 	int		*rows;
 	int		Nullify;
 	int		criterion;
-	bool	evaluateI;
+	int	evaluateI;
 	int		augment;
 	double	*proportions=0;
 	int		maxIteration;
@@ -1957,7 +1957,7 @@ SEXP FederovOpt(
 	double  I;
 	double  G;
 
-	bool    doSpace=false;
+	int    doSpace=false;
 	double  *B=NULL;
 	double  *BU=0;
 	double	*U=0;

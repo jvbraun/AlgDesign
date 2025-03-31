@@ -30,10 +30,10 @@
 
 int		MAXN=0;
 int		nColumns=0;
-bool    doWholeBlock=false; /* create block within block interactions */
-bool    extraBlock=false;  /* True when candidate list is in an extra block */
-bool	initRows=false;    /* True when initial design rows are specified */
-bool    obScaled=false;    /* When true orthogonal blocks are scaled */
+int    doWholeBlock=false; /* create block within block interactions */
+int    extraBlock=false;  /* True when candidate list is in an extra block */
+int	initRows=false;    /* True when initial design rows are specified */
+int    obScaled=false;    /* When true orthogonal blocks are scaled */
 
 extern void transposeMatrix(double *X,int N,int k);
 
@@ -46,7 +46,7 @@ void Difference(double *vec,double *first,double *second,int	k);
 void FillB(int nB,int *B,int *blocksizes,int *BlockArray);
 void formBlockMeans(double *blockMeans,double *X,int *B,int k,int	nB,int *blocksizes);
 void getRangeB(double *pMx,double *pMn,double *pX,int k);
-void initializeB(int *B,int *rows,int *irows,int N,int Nxb,int nB,int *blocksizes,bool firstRepeat);
+void initializeB(int *B,int *rows,int *irows,int N,int Nxb,int nB,int *blocksizes,int firstRepeat);
 void initializeBlockArray(int *rows,int *irows,int N,int Nxb,int nB,int *blocksizes,int *BlockArray);
 void MakeTi(double *T,double *Tip,int k);
 void NoDupPermuteB(int *rows,int N,int *B,int n,int bs);
@@ -60,7 +60,7 @@ double transW(double *Tip,double *tVec,double *W,int k);
 
 int ProgAllocate(int **B,double **blockMeans,double **tBlockMeans,int **BlockArray,double **tX,double **T,		
 	double **Tip,double **W,double **vec,double **Sc,int **rows,int N,int k,int Nxb,int nB,
-	bool criterion,int *blocksize);
+	int criterion,int *blocksize);
 
 /* used only when Calloc() is used. */
 /* void ProgDeallocate(int *B,double *blockMeans,double *tBlockMeans,double *tX,double *T, */
@@ -73,7 +73,7 @@ void BlockOptimize(double *X,int nB,int *blocksizes,double *blockFactors,int *B,
 	double *Sc,int *rows, int *irows, int N,int Nxb,int k,int nEx,double *D,double *diagonality,
 	int *BlockArray,int nRepeats,int *iter,int *error);
 double reduceXtoT(double *X,double *T,int *B,double *blockMeans,int	k,int nB,
-	int *blocksizes,double *blockFactors,double *vec,double *Sc,bool *singular);
+	int *blocksizes,double *blockFactors,double *vec,double *Sc,int *singular);
 void makeTiFromTB(double *Tip,double *T,double *W,double *avVar, int k);
 double findDeltaBlock(double *tX,double *tBlockMeans,int	*B,int nB,int nEx,int *blocksizes,int xcur,
 	int	*xnew,int curBlock,int *newBlock,int k);
@@ -93,7 +93,7 @@ double  formBlockMeansOB(double *blockMeans,double *X,int   *B,int	k,int	nB,int 
 	double  *blockFactors,double  *gMean,double *gSS,double *tolerance,double  *blockSS);
 double findDeltaOB(double *X,double *blockMeans,double *vec,double *blockSS,int	*B,int	nB,int	nEx,
 	int		*blocksizes,double  *blockFactors,double *gMean,double *gSS,int	xcur,int *xnew,int	curBlock,int	*newBlock,
-	int		k,int	Nxb,bool   *failure);
+	int		k,int	Nxb,int   *failure);
 void exchangeOB(double  *X,double  *vec,double  *blockMeans,double  *gMean,double *gSS,double  *blockSS,
 	int		*B,int	*blocksizes,double *blockFactors,int	xcur,int xnew,int	curBlock,
 	int		newBlock,int nB,int	k,int	Nxb);
@@ -106,11 +106,11 @@ void BlockOptimizeDpc(double *X,int nB,int *blocksizes,double *blockFactors,int 
 	double *tBlockMeans,double *T,double *Tip,double *W,double *tX,double *vec,double *Sc,int *rows,int *irows,
 	int N,int Nxb,int nEx,int k,double *D,double *Dp,int *BlockArray,int nRepeats,int *iter,int *error);
 double reduceXtoTDpc(double *X,double *T,int *B,double *blockMeans,int N,int k,int nB,
-	int *blocksizes,double *blockFactors,double *vec,double *Sc,bool *singular);
+	int *blocksizes,double *blockFactors,double *vec,double *Sc,int *singular);
 void makeTiFromTDpc(double *Tip,double *T,double	*W,int *blocksizes,int nB,int curBlock,int newBlock,int k);
 double findDeltaDpc(double *Tip,double *X,double *blockMeans,double *tX,double *tBlockMeans,
 	double *vec,int	*B,int nB,int nEx,int *blocksizes,double *blockFactors,int xcur,int *xnew,int curBlock,
-	int	*newBlock,int k,bool *failure);
+	int	*newBlock,int k,int *failure);
 void exchangeDpc(double *T,double *X,double *vec,double *blockMeans,int *B,int *blocksizes,double *blockFactors,
 	int	xcur,int xnew,int curBlock,int newBlock,int	nB,int k);
 
@@ -119,10 +119,10 @@ void BlockOptimizeDp(double *X,int nB,int *blocksizes,double *blockFactors,int *
 	double *T,double *Tip,double *W,double *tX,double *vec,double *Sc,int *rows,int *irows,
 	int N,int Nxb,int nEx,int k,double *D,double *Dp,int *BlockArray,int nRepeats,int *iter,int *error);
 double reduceXtoTDp(double *X,double *T,int *B,int N,int k,int nB,
-	int *blocksizes,double *blockFactors,double *vec,double *Sc,bool *singular);
+	int *blocksizes,double *blockFactors,double *vec,double *Sc,int *singular);
 void makeTiFromTDp(double *Tip,double *T,double	*W,int *blocksizes,int nB,int curBlock,int newBlock,int k);
 double findDeltaDp(double *Tip,double *X,double *tX,int	*B,int nB,int nEx,int *blocksizes,double *blockFactors,
-		double *vec,int xcur,int *xnew,int curBlock,int *newBlock,int	k,bool *failure);
+		double *vec,int xcur,int *xnew,int curBlock,int *newBlock,int	k,int *failure);
 void exchangeDp(double *T,double *X,double *vec,int *B,int *blocksizes,double *blockFactors,
 	int	xcur,int xnew,int curBlock,int newBlock,int	nB,int k);
 
@@ -186,7 +186,7 @@ void RotateB(
 	int		i,
 			j,
 			kIndex;
-	bool	skip;
+	int	skip;
 
 
 	for (i=0;i<nColumns;i++) {
@@ -341,7 +341,7 @@ double reduceXtoT(
 	double  *blockFactors,
 	double  *vec,
 	double  *Sc,
-	bool    *singular
+	int    *singular
 )
 {
 	double	*xri;
@@ -430,7 +430,7 @@ double reduceXtoTDpc(
 	double  *blockFactors,
 	double  *vec,
 	double  *Sc,
-	bool    *singular
+	int    *singular
 )
 {
 	double	*xri;
@@ -523,7 +523,7 @@ double reduceXtoTDp(
 	double  *blockFactors,
 	double  *vec,
 	double  *Sc,
-	bool    *singular
+	int    *singular
 )
 {
 	double	*xri;
@@ -547,7 +547,7 @@ double reduceXtoTDp(
 	int		bs;
 	int		kt;
 	double  *deli=0;
-	bool	allowSingular=false;
+	int	allowSingular=false;
 
 	*singular=false;
 
@@ -693,7 +693,7 @@ void makeTiFromTDpc(
 	int l;
 	int K=(k*(k+1))/2;
 	int	sizeT=sizeof(double)*K;
-	bool twoBlocks=false;
+	int twoBlocks=false;
 	double d;
 	double *pTip;
 	double *ppTip;
@@ -765,7 +765,7 @@ void makeTiFromTDp(
 	int l;
 	int K=(k*(k+1))/2;
 	int	sizeT=sizeof(double)*K;
-	bool twoBlocks=false;
+	int twoBlocks=false;
 	double d;
 	double *pTip;
 	double *ppTip;
@@ -1745,7 +1745,7 @@ double findDeltaOB(
 	int		*newBlock,
 	int		k,
 	int		Nxb,
-	bool    *failure
+	int    *failure
 	)
 {
 	double delta=0;
@@ -1924,7 +1924,7 @@ double findDeltaDpc(
 	int		curBlock,
 	int		*newBlock,
 	int		k,
-	bool    *failure
+	int    *failure
 	)
 {
 	double delta=0;
@@ -2158,7 +2158,7 @@ double findDeltaDp(
 	int		curBlock,
 	int		*newBlock,
 	int		k,
-	bool    *failure
+	int    *failure
 	)
 {
 	double delta=0;
@@ -2533,7 +2533,7 @@ void NoDupPermuteB(
 	int bs
 	)
 {
-	bool nodup=true;
+	int nodup=true;
 	int i;
 	int j;
 	int curVal;
@@ -2569,7 +2569,7 @@ void initializeB(
 	int Nxb,
 	int nB,
 	int *blocksizes,
-	bool firstRepeat
+	int firstRepeat
 
 )
 {
@@ -2914,8 +2914,8 @@ void BlockOptimize(
 	int		newBlock=0;
 	int		xcur;
 	int		xnew;
-	bool    singular;
-	bool	exchanged;
+	int    singular;
+	int	exchanged;
 	int		countSingular=0;
 	int		nRepeatCounts=nRepeats;
 	double  aVar=1;
@@ -3058,8 +3058,8 @@ void BlockOptimizeOB(
 	int		newBlock=0;
 	int		xcur=0;
 	int		xnew=0;
-	bool    singular;
-	bool	exchanged;
+	int    singular;
+	int	exchanged;
 	int		nRepeatCounts=nRepeats;
 	int	i;
 	int j;
@@ -3070,7 +3070,7 @@ void BlockOptimizeOB(
 	double totalSS=0;
 	double curSS=0;
 	double bestSS=1e10;
-	bool   failure;
+	int   failure;
 	double logDet;
 
 	initializeBlockArray(rows,irows,N,Nxb,nB,blocksizes,BlockArray);
@@ -3178,9 +3178,9 @@ void BlockOptimizeDpc(
 	int		xcur;
 	int		xnew;
 	int		countSingular=0;
-	bool    singular;
-	bool    failure;
-	bool	exchanged;
+	int    singular;
+	int    failure;
+	int	exchanged;
 	int		nRepeatCounts=nRepeats;
 	int		iterT=0;
 
@@ -3309,9 +3309,9 @@ void BlockOptimizeDp(
 	int		xcur;
 	int		xnew;
 	int		countSingular=0;
-	bool    singular;
-	bool    failure;
-	bool	exchanged;
+	int    singular;
+	int    failure;
+	int	exchanged;
 	int		nRepeatCounts=nRepeats;
 	int		iterT=0;
 
@@ -3473,7 +3473,7 @@ SEXP BlockOpt(
 	int		i;
 	int		Nxb=0;			/* sum of the blocksizes */
 	int     nEx=0;			/* number of values in the extra block */
-	bool    error;
+	int    error;
 	int		iter;
 
 			/* returns */
