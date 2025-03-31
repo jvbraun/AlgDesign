@@ -20,9 +20,10 @@
 #define solongas(A) }while(A)
 #define null()
 
-#define true 1
-#define false 0
-
+/* #define true 1 */
+/* #define false 0 */
+/* #define bool int */
+#include <stdbool.h>     /* Bringing up to date with current compilers. */
 
 #define maxm(a,b) (((a)>(b))?(a):(b))
 #define minm(a,b) (((a)<(b))?(a):(b))
