@@ -15,3 +15,11 @@ Packaged: 2014-02-12 09:07:20 UTC; ripley
 Repository: CRAN
 Date/Publication: 2014-02-12 10:10:49
 NeedsCompilation: yes
+ Authors@R: c(person(given = "Bob",
+                        family = "Wheeler",
+                        role = "aut",
+                        email = "bwheelerg@gmail.com"),
+                 person(given = "Jerome",
+                        family = "Braun",
+                        role = "cre",
+                        email = "jvbraun.statistics@gmail.com"))
