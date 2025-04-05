@@ -1,7 +1,6 @@
 Package: AlgDesign
 Version: 1.2.1.2
 Title: Algorithmic Experimental Design
-Author: Bob Wheeler <bwheelerg@gmail.com>
 Maintainer: Jerome Braun <jvbraun.statistics@gmail.com>
 Description: Algorithmic experimental designs. Calculates exact and
         approximate theory experimental designs for D,A, and I
@@ -15,7 +14,7 @@ Packaged: 2014-02-12 09:07:20 UTC; ripley
 Repository: CRAN
 Date/Publication: 2014-02-12 10:10:49
 NeedsCompilation: yes
- Authors@R: c(person(given = "Bob",
+Authors@R: c(person(given = "Bob",
                         family = "Wheeler",
                         role = "aut",
                         email = "bwheelerg@gmail.com"),
